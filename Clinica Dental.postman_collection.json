@@ -1,0 +1,629 @@
+{
+	"info": {
+		"_postman_id": "c062dda7-43ed-484c-9568-cc44acf8c924",
+		"name": "Clinica Dental",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/patient/findAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"patient",
+								"findAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"name\": \"Roberto\",\r\n    \"lastname\": \"acdgjadg\",\r\n    \"email\": \"fulssdo@gmail.com\",\r\n    \"dni\": \"2342343\",\r\n    \"dateAdmission\": \"2022-04-07\",\r\n    \"flag\": false,\r\n    \"address\": {\r\n        \r\n        \"street\": \"Rivera\",\r\n        \"number\": 233,\r\n        \"locality\": \"saenz peña\",\r\n        \"province\": \"chaco\",\r\n        \"flag\": false\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/patient/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"patient",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/patient/findById/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"patient",
+								"findById",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByEmail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/patient/findByEmail?email=jorg@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"patient",
+								"findByEmail"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jorg@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/patient/deleteById/16",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"patient",
+								"deleteById",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 21,\r\n    \"name\": \"Hugo\",\r\n    \"lastname\": \"Rodriguez\",\r\n    \"email\": \"hugooo@gmail.com\",\r\n    \"dni\": \"12212211\",\r\n    \"dateAdmission\": \"2022-04-12\",\r\n    \"flag\": false,\r\n    \"address\": {\r\n            \r\n            \"street\": \"belgrano\",\r\n            \"number\": 5454,\r\n            \"locality\": \"saenz peña\",\r\n            \"province\": \"chaco\",\r\n            \"flag\": true\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/patient/update/id/21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"patient",
+								"update",
+								"id",
+								"21"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dentist",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/dentist/findAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentist",
+								"findAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"jesus\",\r\n        \"lastname\": \"jaime\",\r\n        \"enrollment\":9288,\r\n        \"flag\": false\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/dentist/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentist",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/dentist/findById/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentist",
+								"findById",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/dentist/deleteById/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentist",
+								"deleteById",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":7,\r\n    \"name\": \"Jhon\",\r\n    \"lastname\": \"Dhan\",\r\n    \"enrollment\": 765,\r\n    \"flag\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/dentist/update/id/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dentist",
+								"update",
+								"id",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/address/findAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"address",
+								"findAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"street\": \"Uruguay\",\r\n    \"number\": 655,\r\n    \"locality\": \"Resistencia\",\r\n    \"province\": \"chaco\",\r\n    \"flag\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/address/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"address",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/address/findById/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"address",
+								"findById",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/address/deleteById/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"address",
+								"deleteById",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 1,\r\n        \"street\": \"Rivera\",\r\n        \"number\": 233,\r\n        \"locality\": \"saenz peña\",\r\n        \"province\": \"chaco\",\r\n        \"flag\": false\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/address/update/id/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"address",
+								"update",
+								"id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shift",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/shift/findAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"shift",
+								"findAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \r\n        \"date\": \"2022-04-07\",\r\n        \"flag\": false,\r\n        \"patient\": {\r\n            \"id\": 1,\r\n            \"name\": \"Jorge\",\r\n            \"lastname\": \"german\",\r\n            \"email\": \"jorg@gmail.com\",\r\n            \"dni\": \"45454545\",\r\n            \"dateAdmission\": \"2022-04-07\",\r\n            \"flag\": false,\r\n            \"address\": {\r\n                \"id\": 3,\r\n                \"street\": \"belgrano\",\r\n                \"number\": 5454,\r\n                \"locality\": \"saenz peña\",\r\n                \"province\": \"chaco\",\r\n                \"flag\": true\r\n            }\r\n        },\r\n        \"dentist\": {\r\n            \"id\": 1,\r\n            \"name\": \"fulano\",\r\n            \"lastname\": \"detal\",\r\n            \"enrollment\": 1233,\r\n            \"flag\": false\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/shift/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"shift",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/shift/findById/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"shift",
+								"findById",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/shift/deleteById/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"shift",
+								"deleteById",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 8,\r\n    \"date\": \"2022-05-08T00:00:00\",\r\n    \"flag\": false,\r\n    \"patient\": {\r\n        \"id\": 1\r\n        \r\n    },\r\n    \"dentist\": {\r\n        \"id\": 1\r\n        \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/shift/update/id/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"shift",
+								"update",
+								"id",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "Singin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "username",
+								"value": "admin",
+								"type": "text"
+							},
+							{
+								"key": "password",
+								"value": "123",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"sofia\",\r\n    \"username\":\"sofia\",\r\n    \"email\":\"sopfi@gmail.com\",\r\n    \"password\":\"carla\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"angel@gmail.com\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

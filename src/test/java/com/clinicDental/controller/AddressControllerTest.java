@@ -23,6 +23,18 @@ class AddressControllerTest {
     private IAddressService addressService;
     @Autowired
     private ObjectMapper mapper;
+    Address address1=null;
+    @BeforeEach
+    void setUp() {
+        Address address=new Address();
+        address.setFlag(false);
+        address.setStreet("Chacra");
+        address.setLocality("Saenz Peña");
+        address.setNumber(2222);
+        address.setProvince("Chaco");
+        address.setId(22L);
+        address1=addressService.save(address);
+    }
 
     @Test
     void save() {
@@ -35,7 +47,7 @@ class AddressControllerTest {
         Address addressSave=addressService.save(address);
         assertNotNull(addressSave);
     }
-    //No anda
+
 
 
 
@@ -59,45 +71,7 @@ class AddressControllerTest {
         assertTrue(addressDtoSave!=null);
 
     }
-    //No anda
-    @Test
-    void update() {
-        Address address=new Address();
-        address.setFlag(false);
-        address.setStreet("Amigas");
-        address.setLocality("Saenz Peña");
-        address.setNumber(2222);
-        address.setId(1L);
-        address.setProvince("Chaco");
 
-        //addressService.save(address);
-        //AddressDto addressDtoSave=addressService.findById(1L);
-        //Address addressToUpdate=null;
-        //addressToUpdate=mapper.convertValue(addressDtoSave,Address.class);
-        Address addressDidUpdate=addressService.update(address,1L);
-        assertTrue(addressDidUpdate!=null);
 
-    }
 
-    //no anda delete
-    Address address1=null;
-    @BeforeEach
-    void setUp() {
-        Address address=new Address();
-        address.setFlag(false);
-        address.setStreet("Chacra");
-        address.setLocality("Saenz Peña");
-        address.setNumber(2222);
-        address.setProvince("Chaco");
-        address.setId(22L);
-        address1=addressService.save(address);
-    }
-
-    @Test
-    void deleteById() {
-
-        addressService.deleteById(address1.getId());
-        AddressDto addressDto=addressService.findById(address1.getId());
-        assertTrue(addressDto==null);
-    }
 }

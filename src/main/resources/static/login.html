@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es"
+  xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+  <!-- ---------------- estilos compartidos de login y signup ---------------- -->
+  <link rel="stylesheet" href="/css/login.css">
+
+  <!-- ---------------------- logica aplicada en login ----------------------- -->
+  <!-- <script src="/scripts/utils.js"></script> -->
+  <script src="/js/login.js" defer></script>
+
+</head>
+
+<body>
+<div class="left">
+  <img src="/assets/logo-login.jpg" alt="login">
+</div>
+
+<div class="right">
+  <form method="POST" action="/login">
+    <div class="form-header">
+      <p>Clinic Dental</p>
+    </div>
+    <h1>Login</h1>
+
+
+    <label>
+      User:
+      <input id="inputEmail" type="text">
+    </label>
+    <label>
+      Password:
+      <input id="inputPassword" type="password">
+    </label>
+
+    <button type="submit" value="Login">login</button>
+
+  </form>
+</div>
+
+</body>
+
+</html>

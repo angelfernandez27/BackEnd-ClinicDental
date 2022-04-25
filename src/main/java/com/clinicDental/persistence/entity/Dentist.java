@@ -41,10 +41,15 @@ public class Dentist {
     //@JsonIgnore
     //private List<Shift> shifts=new ArrayList<>();
 
-    public Dentist() {
-    }
+
     /*public void addShift(Shift shift){
         shifts.add(shift);
         shift.setDentist(this);
     }*/
+
+
+
+    public Dentist() {
+    }
+
 }

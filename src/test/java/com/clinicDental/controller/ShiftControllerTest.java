@@ -5,6 +5,9 @@ import com.clinicDental.persistence.entity.Dentist;
 import com.clinicDental.persistence.entity.Patient;
 import com.clinicDental.persistence.entity.Shift;
 import com.clinicDental.persistence.entity.dto.ShiftDto;
+import com.clinicDental.persistence.repository.IDentistRepository;
+import com.clinicDental.persistence.repository.IPatientRepository;
+import com.clinicDental.persistence.repository.IShiftRepository;
 import com.clinicDental.service.IShiftService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +24,12 @@ class ShiftControllerTest {
 
     @Autowired
     private IShiftService shiftService;
+    @Autowired
+    private IShiftRepository shiftRepository;
+    @Autowired
+    private IPatientRepository patientRepository;
+    @Autowired
+    private IDentistRepository dentistRepository;
 
 
     Shift shift=new Shift();
@@ -31,7 +40,7 @@ class ShiftControllerTest {
         patient.setName("Juan");
         patient.setLastname("Lorenzetti");
         patient.setDni("32433334");
-        patient.setEmail("jssaa@gmail.com"); ///hay que ir cambiando porque no se pude repetir en la db
+        patient.setEmail("jssagghga@gmail.com"); ///hay que ir cambiando porque no se pude repetir en la db
         patient.setFlag(false);
         patient.setDateAdmission(LocalDate.of(2022,04,13));
         Address address=new Address();
@@ -41,31 +50,29 @@ class ShiftControllerTest {
         address.setProvince("Salta");
         address.setFlag(false);
         patient.setAddress(address);
-
+        Patient patientSave=patientRepository.save(patient);
         Dentist dentist=new Dentist();
         dentist.setName("Jaime");
         dentist.setLastname("Dann");
         dentist.setEnrollment(332);
         dentist.setFlag(false);
+        Dentist dentistSave=dentistRepository.save(dentist);
         shift.setDate(LocalDateTime.of(2022,04,13,13,54));
         shift.setFlag(false);
-        shift.setDentist(dentist);
-        shift.setPatient(patient);
+        shift.setDentist(dentistSave);
+        shift.setPatient(patientSave);
 
     }
-    //no anda
+
     @Test
     void save() {
-        Shift shift1=null;
 
-        shift1=shiftService.save(shift);
-        assertTrue(shift1==null);
+        Shift shiftSave=shiftService.save(shift);
+        assertTrue(shiftRepository.findById(shiftSave.getId()).isPresent());
 
     }
 
-    @Test
-    void deleteById() {
-    }
+
 
     @Test
     void findAll() {
@@ -73,7 +80,7 @@ class ShiftControllerTest {
         assertTrue(shiftDtoList!=null);
     }
 
-    //no anda pq no anda save
+
     @Test
     void findById() {
         shiftService.save(shift);
@@ -81,7 +88,5 @@ class ShiftControllerTest {
         assertTrue(shiftDto!=null);
     }
 
-    @Test
-    void update() {
-    }
+
 }

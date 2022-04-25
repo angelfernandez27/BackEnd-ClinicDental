@@ -34,16 +34,12 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
                 "Ocurrió un error",
                 e.getMessage()
         );
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(exceptionResponse,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
-        logger.trace("Este es un mensaje de rastreo.");
-        logger.debug("Este es un mensaje de depuración.");
-        logger.info("Este es un mensaje de información.");
-        logger.warn("Este es un mensaje de advertencia.");
         logger.error("Este es un mensaje de error.");
 
         Map<String, String> errors = new HashMap<>();
@@ -59,6 +55,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
                 ex.getMessage(),
                 errors
         );
+
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 }

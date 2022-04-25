@@ -13,5 +13,5 @@ public class DentistDto {
     private String lastname;
     private int enrollment;
     private Boolean flag;
-    //private List<Shift> shifts=new ArrayList<>();
+
 }

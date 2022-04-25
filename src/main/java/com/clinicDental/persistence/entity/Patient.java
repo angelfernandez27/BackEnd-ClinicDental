@@ -29,7 +29,6 @@ public class Patient {
     private String lastname;
     @Email(message = "email incorrect",regexp = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")
     @NotBlank(message = "Email can not blank.")
-    @Column(unique = true)
     private String email;
     @NotEmpty(message = "dni can´t be empty")
     @NonNull

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("/address")
 public class AddressController {

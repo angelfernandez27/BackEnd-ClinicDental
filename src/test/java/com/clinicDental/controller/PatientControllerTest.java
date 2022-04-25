@@ -57,9 +57,7 @@ class PatientControllerTest {
         assertTrue(patientSave!=null);
     }
 
-    @Test
-    void deleteById() {
-    }
+
 
     @Test
     void findAll() {
@@ -74,9 +72,7 @@ class PatientControllerTest {
         assertTrue(patientDto!=null);
     }
 
-    @Test
-    void update() {
-    }
+
 
     @Test
     void findByEmail() {

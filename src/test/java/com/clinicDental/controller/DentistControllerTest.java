@@ -32,9 +32,7 @@ class DentistControllerTest {
         assertNotNull(dentist1);
     }
 
-    @Test
-    void deleteById() {
-    }
+
 
     @Test
     void findAll() {
@@ -49,7 +47,5 @@ class DentistControllerTest {
         assertNotNull(dentistDto);
     }
 
-    @Test
-    void update() {
-    }
+
 }

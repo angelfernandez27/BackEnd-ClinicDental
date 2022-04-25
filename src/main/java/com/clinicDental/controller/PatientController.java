@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/patient")
 public class PatientController {
     @Autowired
     private IPatientService patientService;
 
-    @CrossOrigin
+
     @PostMapping("/save")
     public ResponseEntity<?> save(@Valid @RequestBody Patient patient) {
         Patient patient1;
@@ -26,7 +26,7 @@ public class PatientController {
         return new ResponseEntity<>(patient1,HttpStatus.CREATED);
     }
 
-    @CrossOrigin
+
     @DeleteMapping("/deleteById/{id}")
     public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
             patientService.deleteById(id);
@@ -39,19 +39,19 @@ public class PatientController {
         patientDtoList=patientService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(patientDtoList);
     }
-    @CrossOrigin
+
     @GetMapping("/findById/{id}")
     public ResponseEntity<PatientDto> findById(@PathVariable("id") Long id) {
         PatientDto patientDto=null;
         patientDto=patientService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(patientDto);
     }
-    @CrossOrigin
+
     @PutMapping("/update/id/{id}")
     public ResponseEntity<Patient> update(@Valid @RequestBody Patient patient,@PathVariable("id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(patientService.update(patient,id));
     }
-    @CrossOrigin
+
     @GetMapping("/findByEmail")
     public ResponseEntity<PatientDto> findByEmail(@RequestParam String email){
         return  ResponseEntity.status(HttpStatus.OK).body(patientService.findPatientByEmail(email));

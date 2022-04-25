@@ -1,5 +1,6 @@
 package com.clinicDental.service.impl;
 
+import com.clinicDental.persistence.entity.Address;
 import com.clinicDental.persistence.entity.Patient;
 import com.clinicDental.persistence.entity.dto.PatientDto;
 import com.clinicDental.persistence.repository.IPatientRepository;
@@ -27,7 +28,7 @@ class PatientServiceTest {
         patient.setLastname("Rodriguez");
         patient.setDateAdmission(LocalDate.of(2022,04,12));
         patient.setDni("12212211");
-        patient.setEmail("hugooo@gmail.com"); //hay que cambiar siempre porque no puede repetirse en la db
+        patient.setEmail("gfg@gmail.com"); //hay que cambiar siempre porque no puede repetirse en la db ya que va a ser su username
         patient.setFlag(false);
 
 
@@ -39,14 +40,12 @@ class PatientServiceTest {
         assertTrue(patientSave!=null);
     }
 
-    @Test
-    void deleteById() {
-    }
+
 
     @Test
     void findById() {
-        patientRepository.save(patient);
-        Optional<Patient> patientOptional=patientRepository.findById(1L);
+        Patient patientSave=patientRepository.save(patient);
+        Optional<Patient> patientOptional=patientRepository.findById(patientSave.getId());
         assertTrue(patientOptional.isPresent());
     }
 
@@ -56,15 +55,59 @@ class PatientServiceTest {
         assertTrue(patientList!=null);
     }
 
-    @Test
-    void update() {
-    }
+
 
     @Test
     void findPatientByEmail() {
-        patientRepository.save(patient);
-        Optional<Patient>patientOptional=patientRepository.findPatientByEmail("hugooo@gmail.com");
+        Patient patientSave=patientRepository.save(patient);
+        Optional<Patient>patientOptional=patientRepository.findPatientByEmail(patientSave.getEmail());
         assertTrue(patientOptional.isPresent());
 
+    }
+    @Test
+    void update() {
+        //no uso el de before porque generaba problemas con el proxy
+
+        Address address=new Address();
+        address.setStreet("salta");
+        address.setNumber(222);
+        address.setLocality("salta");
+        address.setProvince("salta");
+        address.setFlag(false);
+        Patient patient=new Patient();
+        patient.setFlag(false);
+        patient.setName("Pedro");
+        patient.setLastname("Denne");
+        patient.setDni("434343434");
+        patient.setEmail("dasd@gmail.com");
+        patient.setDateAdmission(LocalDate.now());
+        patient.setAddress(address);
+        Patient patientSave=patientRepository.save(patient);
+        patientSave.setName("Jorge");
+        Patient patientUpdate=patientRepository.save(patientSave);
+        assertEquals(patientUpdate.getName(),"Jorge");
+
+    }
+
+    @Test
+    void deleteById() {
+        //no uso el de before porque generaba problemas con el proxy
+        Address address=new Address();
+        address.setStreet("salta");
+        address.setNumber(222);
+        address.setLocality("salta");
+        address.setProvince("salta");
+        address.setFlag(false);
+        Patient patient=new Patient();
+        patient.setFlag(false);
+        patient.setName("Pedro");
+        patient.setLastname("Denne");
+        patient.setDni("434343434");
+        patient.setEmail("disra@gmail.com");
+        patient.setDateAdmission(LocalDate.now());
+        patient.setAddress(address);
+        Patient patientSave=patientRepository.save(patient);
+        patientRepository.deleteById(patientSave.getId());
+        assertFalse(patientRepository.findById(patientSave.getId()).isPresent());
     }
 }
