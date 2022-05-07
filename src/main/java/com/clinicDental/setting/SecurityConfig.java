@@ -1,5 +1,8 @@
-package com.clinicDental.security;
+package com.clinicDental.setting;
 
+import com.clinicDental.jwt.JWTAuthenticationEntryPoint;
+import com.clinicDental.jwt.JwtAuthenticationFilter;
+import com.clinicDental.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,19 +14,26 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    private UserDetailsService userDetailsService;
+    private CustomUserDetailsService userDetailsService;
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private JWTAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter(){return new JwtAuthenticationFilter();}
+    @Bean
+    PasswordEncoder passwordEncoder(){return new BCryptPasswordEncoder();}
 
 
     @Override
@@ -38,17 +48,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .defaultSuccessUrl("/index.html")
         ;*/
-        http.csrf().disable()
+        //ultimo usado
+        /*http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/User/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .formLogin()
-                .defaultSuccessUrl("/index.html",true);
+                .defaultSuccessUrl("/index.html",true);*/
 
-
-        ;
+        //nuevo
+        http.csrf().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests().antMatchers(HttpMethod.GET,"/**").permitAll()
+                .antMatchers("/auth/**").permitAll()
+                .anyRequest()
+                .authenticated();
+        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         /*http.authorizeRequests()
                 .antMatchers("/dentist/save","/dentist/deleteById/**","/dentist/update/**")
@@ -61,18 +83,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 ;*/
     }
     @Override
-    protected void configure(AuthenticationManagerBuilder build) throws Exception {
-        build.authenticationProvider(daoAuthenticationProvider());
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
-
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider()  {
-        DaoAuthenticationProvider provider= new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(bCryptPasswordEncoder);
-        provider.setUserDetailsService(userDetailsService);
-        return provider;
-    }
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {

@@ -1,5 +1,5 @@
 package com.clinicDental.util;
-
+/*
 import com.clinicDental.persistence.entity.Role;
 import com.clinicDental.persistence.entity.User;
 import com.clinicDental.persistence.repository.IUserRepository;
@@ -34,4 +34,4 @@ public class EncryptPassword implements ApplicationRunner {
         user.setRole(Role.USER);
         return userRepository.save(user);
     }
-}
+}*/

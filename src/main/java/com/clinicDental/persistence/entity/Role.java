@@ -1,7 +1,20 @@
 package com.clinicDental.persistence.entity;
 
 
+import lombok.Data;
 
-public enum Role {
-   USER,ADMIN
+import javax.persistence.*;
+
+@Data
+@Entity
+@Table(name = "role")
+public class Role {
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long id;
+   @Column(length = 60)
+   private String name;
+
+   public Role() {
+   }
 }

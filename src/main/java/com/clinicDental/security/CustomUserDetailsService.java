@@ -1,4 +1,4 @@
-/*package com.clinicDental.service.impl;
+package com.clinicDental.security;
 
 import com.clinicDental.persistence.entity.Role;
 import com.clinicDental.persistence.entity.User;
@@ -16,13 +16,16 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private IUserRepository userRepository;
-
     @Override
-    public UserDetails loadUserByUsername(String email) {
-        return userRepository.findByEmail(email).get();
+    public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
+        User user=userRepository.findByUsernameOrEmail(usernameOrEmail,usernameOrEmail)
+                .orElseThrow(()->new UsernameNotFoundException("user did not find with user o email"));
+        return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),mapperRoles(user.getRoles()));
     }
-
-}*/
+    private Collection<? extends GrantedAuthority> mapperRoles(Set<Role> roles){
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+    }
+}
